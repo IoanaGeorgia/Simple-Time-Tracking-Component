@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Time tracking dashboard</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    :root {
+      --fontSize: 18px;
+      --blue: hsl(246, 80%, 60%);
+      --lightRedWork: hsl(15, 100%, 70%);
+      --softBluePlay: hsl(195, 74%, 62%);
+      --lightRedStudy: hsl(348, 100%, 68%);
+      --limeRedExercise: hsl(145, 58%, 55%);
+      --violetsocial: hsl(264, 64%, 52%);
+      --softOrangeSelfCare: hsl(43, 84%, 65%);
+      --veryDarkBlue: hsl(226, 43%, 10%);
+      --darkBlue: hsl(235, 46%, 20%);
+      --desaturatedBlue: hsl(235, 45%, 61%);
+      --paleBlue: hsl(236, 100%, 87%);
+    }
+
+    * {
+      margin: 0px;
+      padding: 0px;
+      font-size: var(--fontSize);
+      font-family: 'Outfit', sans-serif;
+    }
+
+    body {
+      background-color: var(--veryDarkBlue);
+      overflow-x:hidden;
+    }
+
+    .wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+      height: 100vh;
+
+    }
+
+    .bigWrapper {
+      width: 80vw;
+      height: 70vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profileElem {
+      height: 100%;
+      width: 20%;
+      border-radius: 15px;
+      background-color: var(--darkBlue);
+      /* background-color: red; */
+    }
+
+    .profileElemImage {
+      height: 70%;
+      background-color: var(--blue);
+      border-radius: 15px;
+    }
+
+    .profileElemImage img {
+      border: 2px solid var(--paleBlue);
+      border-radius: 50%;
+      width: 10vh;
+      margin-top: 10%;
+      margin-left: 10%;
+    }
+
+    .profileElemImage p:nth-of-type(1) {
+      font-size: var(--fontSize);
+      color: var(--paleBlue);
+      margin-left: 10%;
+      margin-top: 15%;
+
+    }
+
+    .profileElemImage p:nth-of-type(2) {
+      font-size: 2.4em;
+      color: white;
+      margin-left: 10%;
+    }
+
+    .profileElemSettings {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: flex-start;
+      height: 30%;
+      margin-left: 10%;
+
+    }
+
+    .profileElemSettings button {
+      border: none;
+      background-color: transparent;
+      color: var(--desaturatedBlue);
+    }
+
+    .profileElemSettings button:hover {
+      color: var(--paleBlue);
+      cursor: pointer;
+    }
+
+    .profileElemSettings button:nth-of-type(3) {
+      margin-bottom: 5%;
+    }
+
+    .cardsWrapper {
+      margin-left: 30px;
+      width: 60%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: 33% 33% 33%;
+      grid-template-rows: 50% 50%;
+      grid-gap: 15px 30px;
+    }
+
+    .card {
+      border-radius: 15px;
+    }
+
+    #work {
+      background-color: var(--lightRedWork);
+    }
+
+    .color {
+      display: flex;
+      justify-content: flex-end;
+      border-radius: 15px;
+      z-index: 3;
+      position: relative;
+    }
+
+    .color img {
+      height: 10vh;
+    }
+
+    .mainCard {
+      background-color: var(--darkBlue);
+      height: 80%;
+      margin-top: -13%;
+      z-index: 40;
+      position: relative;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    .mainCard div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--paleBlue);
+      width: 80%;
+    }
+
+    .mainCard p:nth-of-type(1) {
+      font-size: 3.5em;
+      color: var(--paleBlue);
+      text-align: left;
+      width: 80%;
+    }
+
+    .mainCard p:nth-of-type(2) {
+      color: var(--desaturatedBlue);
+      width: 80%;
+      text-align: left;
+      margin-bottom: 5%;
+    }
+
+    .mainCard:hover {
+      filter: brightness(150%);
+      cursor: pointer;
+    }
+
+    #play {
+      background-color: var(--softBluePlay);
+    }
+
+    #study {
+      background-color: var(--lightRedStudy);
+    }
+
+    #exercise {
+      background-color: var(--limeRedExercise);
+    }
+
+    #social {
+      background-color: var(--violetsocial);
+    }
+
+    #self-care {
+      background-color: var(--softOrangeSelfCare);
+    }
+
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+      color:white;
+    }
+
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
+
+    @media only screen and (max-width: 800px) {
+      .bigWrapper {
+        flex-direction: column;
+        width: 90%;
+        /* height:150%; */
+      }
+
+      .profileElem {
+        margin-top: 30%;
+        width: 90%;
+
+      }
+
+      .profileElemSettings {
+        margin-top: 5%;
+
+      }
+
+      .profileElemImage {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
+        height: 60%;
+      }
+
+      .profileElemImage img {
+        margin: 0px;
+        margin-top: 2%;
+      }
+
+      .profileElemSettings {
+        flex-direction: row;
+        margin-left: 0%;
+      }
+
+      .innerImage {
+        width: 50%;
+      }
+
+      .innerImage p:nth-of-type(1) {
+        margin: 0px;
+      }
+
+      .innerImage p:nth-of-type(2) {
+        font-size: var(--fontSize);
+        margin: 0px;
+
+      }
+
+      .cardsWrapper {
+        margin-top: 10%;
+        width: 80%;
+        grid-template-columns: auto;
+        grid-template-rows: 30% 30% 30% 30% 30% 30%;
+      }
+
+      .mainCard p:nth-of-type(1) {
+        font-size: var(--fontSize);
+        color: var(--paleBlue);
+        text-align: left;
+        width: 80%;
+      }
+
+      .cardsWrapper {
+        margin-left: 0px;
+        width: 90%;
+
+      }
+
+      .cardMain {
+        height: 90%;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="bigWrapper">
+
+      <div class="profileElem">
+        <div class="profileElemImage">
+          <img src="images\image-jeremy.png">
+          <div class="innerImage">
+            <p>Report for</p>
+            <p>Jeremy Robson</p>
+          </div>
+        </div>
+
+        <div class="profileElemSettings">
+          <button>Daily</button>
+          <button>Weekly</button>
+          <button>Monthly</button>
+        </div>
+      </div>
+
+
+      <div class="cardsWrapper">
+        <div class="card">
+          <div class="color" id="work">
+            <img src="images\icon-work.svg">
+          </div>
+          <div class="mainCard">
+            <div>
+              <span>Work</span>
+              <img src="images\icon-ellipsis.svg">
+            </div>
+            <p>32hrs</p>
+            <p>Last week-36hrs</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="color" id="play">
+            <img src="images\icon-play.svg">
+          </div>
+          <div class="mainCard">
+            <div>
+              <span>Play</span>
+              <img src="images\icon-ellipsis.svg">
+            </div>
+            <p>10hrs</p>
+            <p>Last week-8hrs</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="color" id="study">
+            <img src="images\icon-study.svg">
+          </div>
+          <div class="mainCard">
+            <div>
+              <span>Study</span>
+              <img src="images\icon-ellipsis.svg">
+            </div>
+            <p>4hrs</p>
+            <p>Last week-7hrs</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="color" id="exercise">
+            <img src="images\icon-exercise.svg">
+          </div>
+          <div class="mainCard">
+            <div>
+              <span>Exercise</span>
+              <img src="images\icon-ellipsis.svg">
+            </div>
+            <p>4hrs</p>
+            <p>Last week-5hrs</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="color" id="social">
+            <img src="images\icon-social.svg">
+          </div>
+          <div class="mainCard">
+            <div>
+              <span>Social</span>
+              <img src="images\icon-ellipsis.svg">
+            </div>
+            <p>5hrs</p>
+            <p>Last week-10hrs</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="color" id="self-care">
+            <img src="images\icon-self-care.svg">
+          </div>
+          <div class="mainCard">
+            <div>
+              <span>Self Care</span>
+              <img src="images\icon-ellipsis.svg">
+            </div>
+            <p>2hrs</p>
+            <p>Last week-2hrs</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="#">Pascu Ioana-Georgia</a>.
+  </div>
+</body>
+
+</html>
